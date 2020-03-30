@@ -1,11 +1,14 @@
 // Global app controller
-import string from './models/Search';
-// Way 1
-import {add, multiply} from './views/searchView';
-console.log(`Using imported functions ${add(2020, 1984)} & ${multiply(12, 3)}. ${string}`);
-// Way 2
-import {add as a, multiply as m} from './views/searchView';
-console.log(`Using imported functions ${a(2020, 1984)} & ${m(12, 3)}. ${string}`);
-//Way 3
-import * as searchView from './views/searchView';
-console.log(`Using imported functions ${searchView.add(2020, 1984)} & ${searchView.multiply(12, 3)}. ${string}`);
+import axios from 'axios';
+
+async function getResults(query){
+    try{
+        const res = await axios(`https://forkify-api.herokuapp.com/api/search?&q=${query}`);
+        const recipes = res.data.recipes;
+        console.log(recipes);
+    } catch(error) {
+        alert(error);
+    }
+    
+}
+getResults('pasta')
