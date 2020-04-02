@@ -19,10 +19,12 @@ const controlSearch = async () => {
         // New search obj and add to state
         state.search = new Search(query);
         // 3. Prpare UI for results
+        searchView.clearInput();
+        searchView.clearResults();
         // 4. Search for recipe
         await state.search.getResults();
         // 5. render results on UI
-        searchView.renderResults(state.search.result)
+        searchView.renderResults(state.search.result);
     } 
 }
 elements.searchForm.addEventListener('submit', e => {

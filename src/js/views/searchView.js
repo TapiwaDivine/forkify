@@ -1,9 +1,20 @@
 import { elements } from './base';
-//returning input value of form
-export const getInput = () => elements.searchInputs.value;
-// function to clear results before displaying new results
-export const clearInput = () => elements.searchInputs.value = '';
 
+
+//***************************** */returning input value of form
+export const getInput = () => elements.searchInputs.value;
+
+// *************************function to clear results before displaying new results
+export const clearInput = () => {
+    elements.searchInputs.value = '';    
+};
+
+//********************************* */ function to clear results
+export const clearResults = () => {
+    elements.searchResList.innerHTML = '';
+};
+
+//*************************** rendering recipes
 const renderRecipe = recipe =>{
     // genarating markup for UI rendering
     const markup = `
