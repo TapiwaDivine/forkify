@@ -1,5 +1,7 @@
 // Global app controller
 import Search from './models/Search';
+import * as searchView from './views/searchView';
+import { elements } from './views/base';
 
 /*******Global State of the app
  * - Search object
@@ -7,11 +9,11 @@ import Search from './models/Search';
  * - shopping list object
  * - liked recipes
 */
-const state = {};
+const state = {}; // state of the UI per gi
 
-const controlSerach = async () => {
-    // Get query from view
-    const query = 'pizza';
+const controlSearch = async () => {
+    // Get query from serchView
+    const query = searchView.getInput();
 
     if(query){
         // New search obj and add to state
@@ -20,10 +22,10 @@ const controlSerach = async () => {
         // 4. Search for recipe
         await state.search.getResults();
         // 5. render results on UI
-        console.log(state.search.result)
+        searchView.renderResults(state.search.result)
     } 
 }
-document.querySelector('.search').addEventListener('submit', e => {
+elements.searchForm.addEventListener('submit', e => {
     e.preventDefault();
-    controlSerach();
+    controlSearch();
 })
