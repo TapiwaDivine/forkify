@@ -51,6 +51,15 @@ const renderRecipe = recipe =>{
     elements.searchResList.insertAdjacentHTML('beforeend', markup);
 }
 
-export const renderResults = recipes => {
-    recipes.forEach(renderRecipe);
+// function to render btn of the search results pages
+const renderButtons = (page, numRe) =>{
+
+}
+
+//rendering search result and render them in 10s to put on different pages
+export const renderResults = (recipes, page  = 1, recipesPerPage = 10) => {
+    const start = (page - 1) * recipesPerPage;
+    const end = page * recipesPerPage;
+
+    recipes.slice(start, end).forEach(renderRecipe);
 }
