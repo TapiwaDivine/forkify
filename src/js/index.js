@@ -39,10 +39,13 @@ const controlSearch = async () => {
         }
     } 
 }
+
+// function to prevent form resubmition
 elements.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     controlSearch();
 })
+
 
 elements.searchResPages.addEventListener('click', e=> {
     const btn = e.target.closest('.btn-inline');
@@ -56,6 +59,7 @@ elements.searchResPages.addEventListener('click', e=> {
 /***************************************************** RECIPE CONTROLLER *********************/
 const controlRecipe = async () => {
     const id = window.location.hash.replace('#', '');
+    console.log(id);
 
     if(id){
         // prepare UI for changes
@@ -64,8 +68,10 @@ const controlRecipe = async () => {
         state.recipe = new Recipe(id);
 
         try {
-            // get recipe data
+            // get recipe data and parse ingredients
             await state.recipe.getRecipe();
+            state.recipe.parseIngredients();
+
             // Calc servings and time
             state.recipe.calcTime();
             state.recipe.calcServings();
@@ -79,4 +85,5 @@ const controlRecipe = async () => {
 
 // window.addEventListener('hashchange', controlRecipe)
 // window.addEventListener('load', controlRecipe)
-['hashchange', 'load'].forEach(event => window.addEventListener('event', controlRecipe));
+['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
+
