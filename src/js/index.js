@@ -17,7 +17,6 @@ import { elements, renderLoader, clearLoader } from './views/base';
  * - liked recipes
 */
 const state = {}; // state of the UI per given moment
-window.state = state;
 
 
 /***************************************************** SEARCH CONTROLLER *********************/
@@ -67,7 +66,6 @@ elements.searchResPages.addEventListener('click', e=> {
 /***************************************************** RECIPE CONTROLLER *********************/
 const controlRecipe = async () => {
     const id = window.location.hash.replace('#', '');
-    console.log(id);
 
     if(id){
         // prepare UI for changes
